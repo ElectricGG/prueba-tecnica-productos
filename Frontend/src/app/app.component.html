@@ -1,0 +1,11 @@
+<mat-toolbar class="app-toolbar">
+  <span>{{ title }}</span>
+</mat-toolbar>
+
+@if (loadingService.loading()) {
+  <mat-progress-bar mode="indeterminate" class="global-loading"></mat-progress-bar>
+}
+
+<main>
+  <router-outlet></router-outlet>
+</main>

@@ -1,0 +1,108 @@
+<div class="producto-container">
+  <!-- Header -->
+  <div class="header-row">
+    <h2 class="page-title">Listado de Productos</h2>
+    <button mat-raised-button class="btn-new" (click)="openCreateDialog()">
+      <mat-icon>add</mat-icon>
+      Nuevo Producto
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-row" (keydown.enter)="onSearch()">
+    <mat-form-field appearance="outline" class="filter-field" subscriptSizing="dynamic">
+      <mat-label>Código</mat-label>
+      <input matInput [(ngModel)]="filterCodigo" placeholder="Buscar por código" />
+      @if (filterCodigo) {
+        <button matSuffix mat-icon-button (click)="clearFilter('codigo')">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter-field" subscriptSizing="dynamic">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="filterNombre" placeholder="Buscar por nombre" />
+      @if (filterNombre) {
+        <button matSuffix mat-icon-button (click)="clearFilter('nombre')">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    <button mat-raised-button class="btn-search" (click)="onSearch()">
+      <mat-icon>search</mat-icon>
+      Buscar
+    </button>
+  </div>
+
+  <!-- Export -->
+  <div class="export-row">
+    <app-export-button [productos]="productos()"></app-export-button>
+  </div>
+
+  <!-- Table or Skeleton -->
+  @if (loading()) {
+    <app-skeleton-table></app-skeleton-table>
+  } @else {
+    <div class="table-wrapper">
+      <table mat-table [dataSource]="productos()" class="product-table">
+        <!-- Código Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Código</th>
+          <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+        </ng-container>
+
+        <!-- Nombre Column -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let row">{{ row.nombre }}</td>
+        </ng-container>
+
+        <!-- Descripción Column -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>Descripción</th>
+          <td mat-cell *matCellDef="let row">{{ row.descripcion }}</td>
+        </ng-container>
+
+        <!-- Precio Column -->
+        <ng-container matColumnDef="precio">
+          <th mat-header-cell *matHeaderCellDef>Precio Unitario</th>
+          <td mat-cell *matCellDef="let row">{{ row.precio | currencyFormat }}</td>
+        </ng-container>
+
+        <!-- Acciones Column -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" matTooltip="Editar" (click)="openEditDialog(row)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" matTooltip="Eliminar" (click)="onDelete(row)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- No data row -->
+        <tr class="mat-row no-data-row" *matNoDataRow>
+          <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+            No se encontraron productos
+          </td>
+        </tr>
+      </table>
+    </div>
+  }
+
+  <!-- Paginator -->
+  <mat-paginator
+    [length]="totalCount()"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+    (page)="onPageChange($event)"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>

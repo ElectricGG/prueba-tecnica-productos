@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* ===== Override Material theme primary to teal ===== */
+
+/* Toolbar */
+.mat-toolbar.mat-primary {
+  background-color: #009688;
+  color: #fff;
+}
+
+/* Raised / Flat buttons */
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-flat-button.mat-primary,
+.mat-mdc-unelevated-button.mat-primary,
+.mat-mdc-fab.mat-primary,
+.mat-mdc-mini-fab.mat-primary {
+  --mdc-filled-button-container-color: #009688;
+  --mdc-filled-button-label-text-color: #fff;
+}
+
+/* Icon buttons primary */
+.mat-mdc-icon-button.mat-primary {
+  color: #009688;
+}
+
+/* Table header */
+.mat-mdc-header-cell {
+  background-color: #009688 !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  font-size: 14px;
+}
+
+/* Form field focus color */
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #009688 !important;
+}
+
+.mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: #009688 !important;
+}
+
+/* Paginator */
+.mat-mdc-paginator {
+  background-color: #fff;
+}
+
+/* Dialog */
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 8px !important;
+}
+
+/* Datepicker - calendar overlay */
+.mat-datepicker-content {
+  background-color: #fff !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+.mat-calendar-body-selected {
+  background-color: #009688 !important;
+  color: #fff !important;
+}
+
+.mat-calendar-body-today:not(.mat-calendar-body-selected) {
+  border-color: #009688 !important;
+}
+
+.mat-datepicker-toggle-active {
+  color: #009688 !important;
+}
+
+/* Snackbar error */
+.snackbar-error {
+  --mdc-snackbar-container-color: #f44336;
+  --mdc-snackbar-supporting-text-color: #fff;
+}
+
+/* Card */
+.mat-mdc-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 8px !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}

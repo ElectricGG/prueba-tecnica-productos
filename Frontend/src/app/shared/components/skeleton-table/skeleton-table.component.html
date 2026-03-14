@@ -1,0 +1,18 @@
+<div class="skeleton-table">
+  <div class="skeleton-header">
+    <div class="skeleton-cell header-cell"></div>
+    <div class="skeleton-cell header-cell"></div>
+    <div class="skeleton-cell header-cell"></div>
+    <div class="skeleton-cell header-cell"></div>
+    <div class="skeleton-cell header-cell"></div>
+  </div>
+  @for (row of rows; track $index) {
+    <div class="skeleton-row">
+      <div class="skeleton-cell"><div class="skeleton-bar"></div></div>
+      <div class="skeleton-cell"><div class="skeleton-bar"></div></div>
+      <div class="skeleton-cell"><div class="skeleton-bar wide"></div></div>
+      <div class="skeleton-cell"><div class="skeleton-bar short"></div></div>
+      <div class="skeleton-cell"><div class="skeleton-bar short"></div></div>
+    </div>
+  }
+</div>
